@@ -1,0 +1,36 @@
+''' Generate TSP art images with an optimal tour file '''
+
+import random
+
+#Make the file
+
+f = open("bezier_rand.eps", "x")
+f.write("""
+    %!PS-Adobe-3.0 EPSF-3.0 \n
+    %%BoundingBox: 0 0 100 100 \n
+
+    0.7 setgray \n
+
+    1 setlinejoin \n
+    1 setlinecap \n
+
+    /p0x 10 def \n
+    /p0y 10 def \n
+    /p1x 20 def \n
+    /p1y 90 def \n
+    /p2x 80 def \n
+    /p2y 20 def \n
+    /p3x 90 def \n
+    /p3y 90 def \n
+
+    /r 2 def \n
+
+    newpath \n""")
+
+f.write("""closepath \n
+
+        gsave \n
+        stroke\n
+        showpage\n
+        %EOF% xw\n""")
+    
