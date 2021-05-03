@@ -4,12 +4,22 @@ import random
 import os
 import shlex
 from datetime import datetime
-#Make the file
+# Make the file
 cur_date = datetime.now()
 date_time = cur_date.strftime("%m-%d-%Y-%H-%M-%S")
 fi = "tsp-{date}.eps"
 filename = fi.format(date=date_time)
 f = open(filename, "x")
+opt_tour = open('lin105.opt.tour', 'r')
+lines = opt_tour.readlines()
+tour = []
+# Array for storing the path
+for line in lines:
+    for i in line:
+        if i.isdigit() == True:
+            tour.append(line)
+
+print(tour)
 
 f.write("""
     %!PS-Adobe-3.0 EPSF-3.0 \n
