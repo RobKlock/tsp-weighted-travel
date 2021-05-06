@@ -13,40 +13,40 @@ f = open(filename, "x")
 opt_tour = open('lin105.opt.tour', 'r')
 lines = opt_tour.readlines()
 tour = []
+DIMENSION = 10
 # Array for storing the path
-for line in lines:
-    for i in line:
+for line_index in range(4, len(lines)):
+    for i in lines[line_index]:
         if i.isdigit() == True:
-            tour.append(line)
+            tour.append(lines[line_index].rstrip())
 
-print(tour)
+# Dictionary of city coordinates
+cities = open('lin105.tsp', 'r')
+cities_lines = cities.readlines()
+'''
+cities = {
 
-f.write("""
-    %!PS-Adobe-3.0 EPSF-3.0 \n
-    %%BoundingBox: 0 0 400 400 \n
+for line_index in range(6, len(cities_lines)):
+    city_index = ''
+    city_x = ''
+    city_y = ''
+    for i in cities_lines[line_index]:
+'''    
+# print(tour)
+f.write("""%!        %special comment (file is PostScript) \n0 0 moveto\nclosepath\n4 setlinewidth\nstroke\n""")
+# For each city in our tour, find its coordinates
+# and draw a dot and line to that location
+f.write("\n%Draw Cities\n")
+for i in range (0, DIMENSION):
+    for j in range (0, DIMENSION):
+        f.write(str(i * 50))
+        f.write(" ")
+        f.write(str(j * 50))
+        f.write(" 4 0 360 arc\n")
+        #postScript_circle = "{x} {y} 4 0 360 arc"
+        #draw_circle = "{x} {y} 4 0 360 arc".format(x=i * 5, y = j * 5)
+        #f.write(postScript_circle.format(x=i * 5, y = j * 5))
+        f.write("""\nfill\nstroke\n""")
 
-    0.7 setgray \n
-
-    1 setlinejoin \n
-    1 setlinecap \n
-
-    /p0x 10 def \n
-    /p0y 10 def \n
-    /p1x 20 def \n
-    /p1y 90 def \n
-    /p2x 80 def \n
-    /p2y 20 def \n
-    /p3x 90 def \n
-    /p3y 90 def \n
-
-    /r 2 def \n
-
-    newpath \n""")
-
-f.write("""closepath \n
-
-        gsave \n
-        stroke\n
-        showpage\n
-        %EOF% xw\n""")
-os.system("open " + shlex.quote(filename))
+f.write("""showpage\n""")
+#os.system("open " + shlex.quote(filename))
