@@ -1,0 +1,14 @@
+%!                   %special comment (file is PostScript)
+72 72 moveto         %set starting point for path
+200 72 lineto      %construct first line segment
+234 -648 rlineto     %construct second line segment
+closepath            %construct final line segment
+4 setlinewidth       %set the line width to 4 points
+stroke               %paint the constructed triangle
+
+% Draw 100 circles in a grid
+newpath
+200 72 4 0 360 arc %construct a filled circle
+fill
+stroke
+showpage             %render the drawing

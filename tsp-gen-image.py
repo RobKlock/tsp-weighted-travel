@@ -33,15 +33,16 @@ for line_index in range(6, len(cities_lines)):
     for i in cities_lines[line_index]:
 '''    
 # print(tour)
-f.write("""%!        %special comment (file is PostScript) \n0 0 moveto\nclosepath\n4 setlinewidth\nstroke\n""")
+f.write("""%%BoundingBox: 0 0 200 200
+%!        %special comment (file is PostScript) \n0 0 moveto\nclosepath\n4 setlinewidth\nstroke\n""")
 # For each city in our tour, find its coordinates
 # and draw a dot and line to that location
 f.write("\n%Draw Cities\n")
 for i in range (0, DIMENSION):
     for j in range (0, DIMENSION):
-        f.write(str(i * 50))
+        f.write(str(i * 50 + 20))
         f.write(" ")
-        f.write(str(j * 50))
+        f.write(str(j * 50 + 20))
         f.write(" 4 0 360 arc\n")
         #postScript_circle = "{x} {y} 4 0 360 arc"
         #draw_circle = "{x} {y} 4 0 360 arc".format(x=i * 5, y = j * 5)
