@@ -10,29 +10,29 @@ date_time = cur_date.strftime("%m-%d-%Y-%H-%M-%S")
 fi = "tsp-{date}.eps"
 filename = fi.format(date=date_time)
 f = open(filename, "x")
-opt_tour = open('lin105.opt.tour', 'r')
-lines = opt_tour.readlines()
-tour = []
 # Dimension of grid, so the number of cities is DIMENSION ^ 2
 DIMENSION = 10
-# Array for storing the path
-for line_index in range(4, len(lines)):
-    for i in lines[line_index]:
-        if i.isdigit() == True:
-            tour.append(lines[line_index].rstrip())
+TOURFILE = "test-tour.cyc"
 
 # Dictionary of city coordinates
 cities = open('lin105.tsp', 'r')
 cities_lines = cities.readlines()
-
 city_dictionary={}
 city_num = 0
 for i in range(1, DIMENSION + 1):
     for j in range(1, DIMENSION + 1):
         city_dictionary[city_num] = [i,j]
-        print(city_num)
+        # print(city_num)
         city_num += 1
-print(city_dictionary[19])
+
+# Read tour file
+opt_tour = open(TOURFILE, "r")
+lines = opt_tour.readlines()
+# Array for storing the path
+tour = []
+for line_index in range(1, len(lines)):
+    tour.append(lines[line_index].split(" ")[0])
+print(tour)
 '''
 cities = {
 
