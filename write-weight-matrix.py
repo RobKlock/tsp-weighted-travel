@@ -16,14 +16,20 @@ TYPE: TSP\n
 COMMENT: Test for distance matrix using Linkern algorithm (Klock and Cappelletti)\n
 DIMENSION: 100\n
 EDGE_WEIGHT_TYPE: EXPLICIT\n
-EDGE_WEIGHT_FORMAT: UPPER_ROW\n
+EDGE_WEIGHT_FORMAT: FULL_MATRIX\n
 EDGE_WEIGHT_SECTION\n""")
 for i in range (1, DIMENSION):
-    for j in range (0, DIMENSION - i):
-        if i < DIMENSION / 2:
+    for j in range (1, DIMENSION):
+        if i == j:
+            f.write("100 ")
+        if j < DIMENSION / 2 and i < DIMENSION / 2:
             f.write("1 ")
-        else:
+        elif j  > DIMENSION / 2 and i < DIMENSION / 2:
             f.write("2 ")
+        elif j  < DIMENSION / 2 and i > DIMENSION / 2:
+            f.write("1 ") 
+        else:
+            f.write("2 ")   
     f.write("\n")
 f.write("""
 EOF
