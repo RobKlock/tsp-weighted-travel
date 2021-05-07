@@ -75,7 +75,7 @@ for i in map(lambda city: city_dictionary[int(city)], tour):
     f.write(" ")
     f.write(str(i[1] * 50 + 20))
     f.write(" moveto\n")
-    # If we're in the penultimate step, we need to draw a finishing edge
+    # If we're in the penultimate step, we need to draw a finishing edge in ~red~
     if i == tour_coordinates[-1]:
         f.write("""1 0 0 setrgbcolor\n""")
         f.write(str(tour_coordinates[0][0] * 50 + 20))
