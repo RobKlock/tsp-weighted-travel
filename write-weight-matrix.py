@@ -6,27 +6,32 @@ import shlex
 from datetime import datetime
 import math
 DIMENSION = 10
+NUM_CITIES = DIMENSION ** 2
+BIG_DISTANCE = 2000
 # Weighted Distance Function
 def dist(p1, p2):
     # Horizontal and vertical weights
     H = 1
     V = 1
     if p1 == p2:
-        return 100
-    # If p1 x is less than half of dimension, its easier to go vertical
-    if p1[0] < DIMENSION/2:
-        H = 2
+        return BIG_DISTANCE
+    # If both points are in the left half, its easier to go vertical
+    if p1[0] < DIMENSION/2 and p2[0] < DIMENSION/2:
+        H = 1
         V = .5
     # If p1 x is greater than half of dimension, its easier to go horizontal
-    else:
+    elif p1[0] > DIMENSION/2 and p2[0] > DIMENSION/2:
         H = .5
-        V = 2
-    return math.sqrt((V * ((p1[0] - p2[0])**2)) + (H * ((p2[1] + p2[1])**2)))
+        V = 1
+    else:
+        H = 1
+        V = 1
+    return math.sqrt((H * ((p1[0] - p2[0])**2)) + (V * ((p2[1] + p2[1])**2)))
 # Gather our cities
 city_dictionary={}
 city_num = 0
-for i in range(1, DIMENSION + 1):
-    for j in range(1, DIMENSION + 1):
+for i in range(1, NUM_CITIES + 1):
+    for j in range(1, NUM_CITIES + 1):
         city_dictionary[city_num] = [i * 50 + 20,j * 50 + 20]
         city_num += 1
 #print(city_dictionary)
