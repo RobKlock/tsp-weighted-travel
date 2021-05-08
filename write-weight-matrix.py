@@ -40,6 +40,7 @@ cur_date = datetime.now()
 date_time = cur_date.strftime("%m-%d-%Y-%H-%M-%S")
 fi = "weighted-grid-tsp-{date}.tsp"
 filename = fi.format(date=date_time)
+print("Writing to file: ", filename, "\n")
 f = open(filename, "x")
 DIMENSION = 10
 f.write("""NAME: distance-matrix-tsp\n
