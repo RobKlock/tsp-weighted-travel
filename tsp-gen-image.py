@@ -51,10 +51,14 @@ for i in range (1, DIMENSION + 1):
         f.write(" ")
         f.write(str(j * 50 + 20))
         f.write(" 4 0 360 arc\n")
+        if i == 4 and j == 2:
+            f.write("""1 0 0 setrgbcolor\n""")
         #postScript_circle = "{x} {y} 4 0 360 arc"
         #draw_circle = "{x} {y} 4 0 360 arc".format(x=i * 5, y = j * 5)
         #f.write(postScript_circle.format(x=i * 5, y = j * 5))
         f.write("""\nfill\nstroke\n""")
+        if i == 4 and j == 2:
+            f.write("""0 0 0 setrgbcolor\n""")
 f.write("\n%Draw Tour\n")
 f.write("\n2 setlinewidth\n")
 #f.write("20 20 moveto\n")

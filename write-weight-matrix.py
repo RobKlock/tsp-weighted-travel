@@ -13,7 +13,15 @@ def dist(p1, p2):
     V = 1
     if p1 == p2:
         return 100
-    return math.sqrt((H * ((p1[0] - p2[0])**2)) + (V * ((p2[0] + p2[1])**2)))
+    # If p1 x is less than half of dimension, its easier to go vertical
+    if p1[0] < DIMENSION/2:
+        H = 2
+        V = .5
+    # If p1 x is greater than half of dimension, its easier to go horizontal
+    else:
+        H = .5
+        V = 2
+    return math.sqrt((V * ((p1[0] - p2[0])**2)) + (H * ((p2[1] + p2[1])**2)))
 # Gather our cities
 city_dictionary={}
 city_num = 0
@@ -21,7 +29,7 @@ for i in range(1, DIMENSION + 1):
     for j in range(1, DIMENSION + 1):
         city_dictionary[city_num] = [i * 50 + 20,j * 50 + 20]
         city_num += 1
-print(city_dictionary)
+#print(city_dictionary)
 # Make the file
 cur_date = datetime.now()
 date_time = cur_date.strftime("%m-%d-%Y-%H-%M-%S")
@@ -32,7 +40,7 @@ DIMENSION = 10
 f.write("""NAME: distance-matrix-tsp\n
 TYPE: TSP\n
 COMMENT: Test for distance matrix using Linkern algorithm (Klock and Cappelletti)\n
-DIMENSION: 10\n
+DIMENSION: 100\n
 EDGE_WEIGHT_TYPE: EXPLICIT\n
 EDGE_WEIGHT_FORMAT: FULL_MATRIX\n
 EDGE_WEIGHT_SECTION\n""")
